@@ -1,4 +1,4 @@
-* {
+ * {
 	margin:0px;
 	padding:0px;
 	box-sizing: border-box;
@@ -24,6 +24,11 @@ footer{
 	height: 80px;
 	margin:0 auto;
 	background: #585858;
+}
+
+footer p{
+	color:#fff;
+	text-align:center;
 }
 
 .main-page {

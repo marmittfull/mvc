@@ -9,14 +9,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width">
 
-	<link rel="stylesheet" href="<?php echo HOME_URI;?>/views/css/style.css">
+	<link rel="stylesheet" href="<?= HOME_URI;?>/views/css/style.css">
 
 
 	<title><?php echo $this->title; ?></title>
 </head>
 <body>
 	<header>
-		<div id="logo"></div>
+		<div id="logo"><img src="<?= HOME_URI ?>/views/images/logo.png" style="height:75px"/></div>
 		<div></div>
 	</header>
 
