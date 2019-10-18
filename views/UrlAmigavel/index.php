@@ -15,11 +15,14 @@
 
 	<img src="https://www.seomaster.com.br/wp-content/uploads/2018/11/21_p.jpg" />
 
-	<p>Para um site decolar como uma das referências eu seu segmento, é imprescindível apostar também nos detalhes. Fazer uma análise das páginas e conferir todos os detalhes. Neste, um dos pontos que deve ser verificado é se há URL amigável para cada link acessado.</p>
+	<p>Para um site decolar como uma das referências eu seu segmento, é imprescindível apostar também nos detalhes. Fazer uma análise das páginas e conferir todos os detalhes. Um dos pontos que deve ser verificado é se há URL amigável para cada link acessado.</p>
 	<p>URL é aquele link que fica na barra de endereço de um site. A sigla significa Uniform Resource Locator — com tradução livre para Localizador Padrão de Recursos. Nada mais é do que um direcionamento de onde aquele link levará quem está navegando.</p>
-	<p> URL amigável, como o nome já indica, é um link que não causa estranheza e proporciona uma maior sensação de segurança para clicar nele. De forma prática, um endereço como este: www.site.com/gjhgjgwbcx22/. Este tipo de página é um bom exemplo do contrário de amigável.</p>
+	<img src="<?= HOME_URI ?>/views/images/url.jpg">
+	<p> URL amigável, como o nome já indica, é um link que não causa estranheza e proporciona uma maior sensação de segurança para clicar nele. De forma prática, um endereço como este: www.site.com?pagina=produto$acao=exibir&id=5. Este tipo de página é um bom exemplo do contrário de amigável.</p>
 	<p>Para o Google, bem como para outros mecanismos de buscas, ter URLs amigáveis coopera com a pontuação de um site de boa qualidade. Esta análise reflete em uma melhor indexação nas buscas on-line. Este é um critério compreensivel, já que se uma marca não se preocupa em organizar as informações do próprio site para receber bem seus consumidores, significa que não conta com um processo assertivo e que não tem algo de valor, comparado aos concorrentes bem preparados tecnicamente.</p>
 	<p>Do ponto de vista da experiência do usuário. Imagine entrar em uma loja on-line para comprar algo que deseja muito e se deparar com esse tipo de falha na construção de um site. Pode gerar uma má impressão e a sensação de insegurança para preencher dados de compras.</p>
+	<h3>Exemplo:</h3>
+	<img src="<?= HOME_URI ?>/views/images/url-amigaveis.png">
 	<p> A seguir é apresentado um conjunto de boas prática na construção de URLs amigáveis</p>
 	<ul style="margin-top:10px;">
 		<li>estabelecer caminhos — nomedosite.com/categoria/subcategoria/nome-do-produto;</li>
@@ -28,7 +31,7 @@
 		<li>focar no uso de palavras-chave que façam sentido para aquelas páginas.</li>
 
 	</ul>
-	<p> A reescrita de URLs é uma forma de redefinilas de forma amigável.
+	<p> A reescrita de URLs é uma forma de redefini-las de forma amigável.
 	<p> O mod_rewrite do Apache é uma maneira fácil e eficiente de manipular URLs. A manipulação de URLs é feita pelo lado do servidor.
 	<p>Numa explicação simples, com o mod_rewrite, URLs amigáveis, simples e sem caracteres especiais são convertidas em endereços de sites.
 	<p>Como o próprio nome sugere, o que ele faz é reescrever a URL. E isso pode ser uma ótima maneira de limpar e organizar as URLs do seu site.
