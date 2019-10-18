@@ -2,7 +2,7 @@
 /**
  * home - Controller de exemplo
  *
- * @package TutsupMVC
+ * @package mvc
  * @since 0.1
  */
 class HomeController extends MainController
