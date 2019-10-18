@@ -2,7 +2,7 @@
 /**
  * home - Controller de exemplo
  *
- * @package TutsupMVC
+ * @package mvc
  * @since 0.1
  */
 class UrlAmigavelController extends MainController
@@ -33,4 +33,4 @@ class UrlAmigavelController extends MainController
 		
     } // index
 	
-} // class HomeController
+} // class UrlAmigavelController

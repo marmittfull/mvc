@@ -1,7 +1,7 @@
 <?php
 /**
  * home - Controller de exemplo
- *
+ * @author Cândido Farias
  * @package mvc
  * @since 0.1
  */
