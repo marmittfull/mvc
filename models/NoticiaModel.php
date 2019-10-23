@@ -2,10 +2,10 @@
 /**
  * Modelo para gerenciar notícias
  *
- * @package TutsupMVC
+ * @package mvc
  * @since 0.1
  */
-class NoticiasAdmModel extends MainModel
+class NoticiaModel extends MainModel
 {
 
 	/**
@@ -423,4 +423,4 @@ class NoticiasAdmModel extends MainModel
 
 	} // paginacao
 	
-} // NoticiasAdmModel
+} // NoticiaModel

@@ -2,7 +2,7 @@
 /**
  * DataBase- Classe para gerenciamento da base de dados
  *
- * @package TutsupMVC
+ * @package mvc
  * @since 0.1
  */
 class DataBase
@@ -329,4 +329,4 @@ class DataBase
 		return;
 	} // delete
 	
-} // Class TutsupDB
+} // Class DataBase

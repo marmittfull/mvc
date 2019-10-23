@@ -4,7 +4,7 @@
  *
  * 
  *
- * @package TutsupMVC
+ * @package mvc
  * @since 0.1
  */
 class MainModel
