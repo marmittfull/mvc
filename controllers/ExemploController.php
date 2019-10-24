@@ -9,17 +9,16 @@ class ExemploController extends MainController
 {
 	// URL: dominio.com/exemplo/
 	public function index() {
-	echo ':-)';
-		$model=$this->load_model("Exemplo");
-		$model->teste();
+		$dadosTeste="null";
 		// Carrega o view
-		//require_once PATH . '/views/exemplo/exemplo.php';
+		require_once PATH . '/views/exemplo/exemplo.php';
 	}
 	
 	// URL: dominio.com/exemplo/outra-acao
 	public function teste() {
 		$model=$this->load_model("Exemplo");
-		var_dump($model);
-		$model->teste();
+		
+		$dadosTeste=$model->teste();
+		require_once PATH . '/views/exemplo/exemplo.php';
 	}
 }
