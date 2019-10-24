@@ -123,7 +123,7 @@ class DataBase
 			return $query;
 			
 		} else {
-		
+		 
 			// Configura o erro
 			$error       = $query->errorInfo();
 			$this->error = $error[2];
@@ -133,7 +133,7 @@ class DataBase
 			
 		}
 	}
-	
+
 	/**
 	 * insert - Insere valores
 	 *
@@ -328,5 +328,26 @@ class DataBase
 		// The end :)
 		return;
 	} // delete
+	
+	/**
+	 * SELECT
+	 *
+	 * Lista registros da tabela
+	 *
+	 * @since 0.1
+	 * @access protected
+	 * @param string $table Nome da tabela
+	 * @param string $where Condição da consulta
+	 * @return Array Retorna a lista de registros
+	 */
+	public function select($table,$where=null){
+		$sql="SELECT * FROM ".$table;
+		if($where)
+			$sql=$sql." ".$where;
+		$return=$this->query($sql);
+		return $return->fetchAll(PDO::FETCH_ASSOC);
+		
+		
+	}//select
 	
 } // Class DataBase

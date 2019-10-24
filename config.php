@@ -22,7 +22,7 @@ define( 'DB_NAME', 'mvc' );
 define( 'DB_USER', 'root' );
 
 // Senha do DB
-define( 'DB_PASSWORD', '' );
+define( 'DB_PASSWORD', 'vertrigo' );
 
 // Charset da conexão PDO
 define( 'DB_CHARSET', 'utf8' );

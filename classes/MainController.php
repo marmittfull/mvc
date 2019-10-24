@@ -84,6 +84,13 @@ class MainController
 		// Garante que o nome do modelo tenha letras minúsculas
 		$model_name =  strtolower( $model_name );
 		
+		//Adiciona o sufixo 'Model'
+		$model_name.="Model";
+
+		
+		$model_name=ucfirst($model_name);
+
+
 		// Inclui o arquivo
 		$model_path = PATH . '/models/' . $model_name . '.php';
 		
@@ -98,16 +105,12 @@ class MainController
 			
 			// Pega só o nome final do caminho
 			$model_name = end( $model_name );
-			
+			Echo $model_name;
 			// Remove caracteres inválidos do nome do arquivo
 			$model_name = preg_replace( '/[^a-zA-Z0-9]/is', '', $model_name );
 			
-			// Verifica se a classe existe
-			if ( class_exists( $model_name ) ) {
-			
-				// Retorna um objeto da classe
-				return new $model_name( $this->db, $this );
-			
+			if(class_exists($model_name)){
+				return new $model_name();
 			}
 			
 			// The end :)

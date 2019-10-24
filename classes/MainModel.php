@@ -9,33 +9,9 @@
  */
 class MainModel
 {
-	/**
-	 * $form_data
-	 *
-	 * Os dados de formulários de envio.
-	 *
-	 * @access public
-	 */	
-	public $form_data;
+	
 
-	/**
-	 * $form_msg
-	 *
-	 * As mensagens de feedback para formulários.
-	 *
-	 * @access public
-	 */	
-	public $form_msg;
-
-	/**
-	 * $form_confirma
-	 *
-	 * Mensagem de confirmação para apagar dados de formulários
-	 *
-	 * @access public
-	 */
-	public $form_confirma;
-
+	
 	/**
 	 * $db
 	 *
@@ -46,31 +22,17 @@ class MainModel
 	public $db;
 
 	/**
-	 * $controller
+	 * Construtor para essa classe
 	 *
-	 * O controller que gerou esse modelo
 	 *
+	 * @since 0.1
 	 * @access public
 	 */
-	public $controller;
+	public function __construct(  ) {
+		
+		$this->db=new DataBase();
 
-	/**
-	 * $parametros
-	 *
-	 * Parâmetros da URL
-	 *
-	 * @access public
-	 */
-	public $parametros;
-
-	/**
-	 * $userdata
-	 *
-	 * Dados do usuário
-	 *
-	 * @access public
-	 */
-	public $userdata;
+	}
 	
 	/**
 	 * Inverte datas 

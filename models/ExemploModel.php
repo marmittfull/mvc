@@ -1,31 +1,25 @@
 <?php
 class ExemploModel extends MainModel
 {
-	/**
-	 * Construtor para essa classe
-	 *
-	 * Configura o DB, o controlador, os parâmetros e dados do usuário.
-	 *
-	 * @since 0.1
-	 * @access public
-	 * @param object $db Objeto da nossa conexão PDO
-	 * @param object $controller Objeto do controlador
-	 */
-	public function __construct( $db = false, $controller = null ) {
-		// Configura o DB (PDO)
-		$this->db = $db;
-		
-		// Configura o controlador
-		$this->controller = $controller;
 
-		// Configura os parâmetros
-		$this->parametros = $this->controller->parametros;
-
-		// Configura os dados do usuário
-		$this->userdata = $this->controller->userdata;
-		
-		echo 'Modelo carregado... <br>';
-	}
 	
-	// Crie seus próprios métodos daqui em diante
+	public function teste(){
+		/*var_dump($this->db);
+		$resultado=$this->db->query("SELECT * FROM exemplo");
+		print_r($resultado);
+		$return = $resultado->fetchAll(PDO::FETCH_ASSOC);
+		print_r($return);
+		
+		foreach($return AS $item){
+			var_dump($item);
+		*/
+            
+		$resultado=$this->db->SELECT("exemplo","where id=3");
+		print_r($resultado);
+
+		/*if($this->db->query("DELETE FROM exemplo WHERE id=1"))
+			echo ":-)";
+		else
+			echo ":-(";*/
+	}
 }
