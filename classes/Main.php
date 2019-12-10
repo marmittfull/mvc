@@ -154,15 +154,20 @@ class Main
 			
 			// Limpa os dados
             $path = rtrim($path, '/');
-            $path = filter_var($path, FILTER_SANITIZE_URL);
-            
+
 			// Cria um array de parâmetros
 			$path = explode('/', $path);
 			
-			// Configura as propriedades
+			// Configura o controlador
+			//Extraio primeiro valor do array para atribuir ao controller
 			$this->controlador  = chk_array( $path, 0 );
+			//Acrecenta sufixo 'Controller' para formar o nome da classe
 			$this->controlador .= 'Controller';
-			$this->acao         = chk_array( $path, 1 );
+			
+			//Configura a ação do controlador
+			//Extraio o segundo valor do array para atribuir a ação a ser executada pelo controller
+			$this->acao = chk_array( $path, 1 );
+			
 			
 			// Configura os parâmetros
 			if ( chk_array( $path, 2 ) ) {
@@ -177,4 +182,4 @@ class Main
 	
 	} // get_url_data
 	
-} // class TutsupMVC
+}

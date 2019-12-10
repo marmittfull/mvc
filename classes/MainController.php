@@ -105,7 +105,7 @@ class MainController
 			
 			// Pega só o nome final do caminho
 			$model_name = end( $model_name );
-			Echo $model_name;
+			
 			// Remove caracteres inválidos do nome do arquivo
 			$model_name = preg_replace( '/[^a-zA-Z0-9]/is', '', $model_name );
 			
