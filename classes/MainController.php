@@ -113,7 +113,7 @@ class MainController
 				return new $model_name();
 			}
 			
-			// The end :)
+			
 			return;
 			
 		} // load_model
