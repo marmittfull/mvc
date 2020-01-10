@@ -9,7 +9,7 @@ class ExemploController extends MainController
 {
 	// URL: dominio.com/exemplo/
 	public function index() {
-		$dadosExemplo="null";
+		$dadosExemplo="Exemplo";
 		/** Carrega os arquivos do view **/
 		require PATH . '/views/includes/header.php';
        			

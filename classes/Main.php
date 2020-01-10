@@ -63,7 +63,7 @@ class Main
 		 * Verifica se o controlador existe. Caso contrário, adiciona o
 		 * controlador padrão (controllers/home-controller.php) e chama o método index().
 		 */
-		if ( !$this->controlador ) {
+		if (!$this->controlador ) {
 			
 			// Adiciona o controlador padrão
 			require_once PATH . '/controllers/HomeController.php';
