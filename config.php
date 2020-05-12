@@ -10,13 +10,13 @@ define( 'PATH', dirname( __FILE__ ) );
 define( 'UP_ABSPATH', PATH . '/views/_uploads' );
 
 // URL da home
-define( 'HOME_URI', 'http://127.0.0.1/cimol/cs2/mvc' );
+define( 'HOME_URI', 'http://127.0.0.1/cimol/coordenacao' );
 
 // Nome do host da base de dados
 define( 'HOSTNAME', 'localhost' );
 
 // Nome do DB
-define( 'DB_NAME', 'mvc' );
+define( 'DB_NAME', 'cimol' );
 
 // Usuário do DB
 define( 'DB_USER', 'root' );

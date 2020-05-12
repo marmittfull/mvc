@@ -114,15 +114,23 @@ class Main
 		
 		// Se o método indicado existir, executa o método e envia os parâmetros
 		if ( method_exists( $this->controlador, $this->acao ) ) {
-			$this->controlador->{$this->acao}( $this->parametros );
-			
+			if(count($this->parametros)==0)
+				$this->controlador->{$this->acao}();
+			else if(count($this->parametros)==1)
+			   $this->controlador->{$this->acao}( $this->parametros[0] );
+			else if(count($this->parametros)==2)
+			    $this->controlador->{$this->acao}($this->parametros[0],$this->parametros[1], $this->parametros[2] );
+			else if(count($this->parametros)==3)
+			    $this->controlador->{$this->acao}($this->parametros[0],$this->parametros[1], $this->parametros[2]);
+			    
+					
 			// FIM :)
 			return;
 		} // method_exists
 		
 		// Sem ação, chamamos o método index
-		if ( ! $this->acao && method_exists( $this->controlador, 'index' ) ) {
-			$this->controlador->index( $this->parametros );		
+		if ( !$this->acao && method_exists( $this->controlador, 'index' ) ) {
+			$this->controlador->index();		
 			
 			// FIM :)
 			return;

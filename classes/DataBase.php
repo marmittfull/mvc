@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DataBase- Classe para gerenciamento da base de dados
  *
@@ -7,101 +8,23 @@
  */
 class DataBase
 {
-	/** DB properties */
-	public $host      = 'localhost', // Host da base de dados 
-	       $db_name   = 'mvc',    // Nome do banco de dados
-	       $password  = '',          // Senha do usuário da base de dados
-	       $user      = 'root',      // Usuário da base de dados
-	       $charset   = 'utf8',      // Charset da base de dados
-	       $pdo       = null,        // Nossa conexão com o BD
-	       $error     = null,        // Configura o erro
-	       $debug     = false,       // Mostra todos os erros 
-	       $last_id   = null;        // Último ID inserido
+	private $pdo;
 	
 	/**
 	 * Construtor da classe
 	 *
 	 * @since 0.1
 	 * @access public
-	 * @param string $host     
-	 * @param string $db_name
-	 * @param string $password
-	 * @param string $user
-	 * @param string $charset
-	 * @param string $debug
 	 */
-	public function __construct(
-		$host     = null,
-		$db_name  = null,
-		$password = null,
-		$user     = null,
-		$charset  = null,
-		$debug    = null
-	) {
+	public function __construct() {
+		//Obtem intancia PDO
+		$this->pdo=Conexao::getInstance();
 	
-		// Configura as propriedades novamente.
-		// Se você fez isso no início dessa classe, as constantes não serão
-		// necessárias. Você escolhe...
-		$this->host     = defined( 'HOSTNAME'    ) ? HOSTNAME    : $this->host;
-		$this->db_name  = defined( 'DB_NAME'     ) ? DB_NAME     : $this->db_name;
-		$this->password = defined( 'DB_PASSWORD' ) ? DB_PASSWORD : $this->password;
-		$this->user     = defined( 'DB_USER'     ) ? DB_USER     : $this->user;
-		$this->charset  = defined( 'DB_CHARSET'  ) ? DB_CHARSET  : $this->charset;
-		$this->debug    = defined( 'DEBUG'       ) ? DEBUG       : $this->debug;
-	
-		// Conecta
-		$this->connect();
+		
 		
 	} // __construct
 	
-	/**
-	 * Cria a conexão PDO
-	 *
-	 * @since 0.1
-	 * @final
-	 * @access protected
-	 */
-	final protected function connect() {
 	
-		/* Os detalhes da nossa conexão PDO */
-		$pdo_details  = "mysql:host={$this->host};";
-		$pdo_details .= "dbname={$this->db_name};";
-		$pdo_details .= "charset={$this->charset};";
-		 
-		// Tenta conectar
-		try {
-		
-			$this->pdo = new PDO($pdo_details, $this->user, $this->password);
-			
-			// Verifica se devemos debugar
-			if ( $this->debug === true ) {
-			
-				// Configura o PDO ERROR MODE
-				$this->pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
-				
-			}
-			
-			// Não precisamos mais dessas propriedades
-			unset( $this->host     );
-			unset( $this->db_name  );
-			unset( $this->password );
-			unset( $this->user     );
-			unset( $this->charset  );
-		
-		} catch (PDOException $e) {
-			
-			// Verifica se devemos debugar
-			if ( $this->debug === true ) {
-			
-				// Mostra a mensagem de erro
-				echo "Erro: " . $e->getMessage();
-				
-			}
-			
-			// Kills the script
-			die();
-		} // catch
-	} // connect
 	
 	/**
 	 * query - Consulta PDO
@@ -110,18 +33,20 @@ class DataBase
 	 * @access public
 	 * @return object|bool Retorna a consulta ou falso
 	 */
-	public function query( $stmt, $data_array = null ) {
-		
+	public function query( $sql, $data_array = null ) {
 		// Prepara e executa
-		$query      = $this->pdo->prepare( $stmt );
-		$check_exec = $query->execute( $data_array );
-		
+		$stmt      = $this->pdo->prepare($sql); 
+
+		if($data_array){
+			$check_exec = $stmt->execute($data_array);
+		}else{
+			$check_exec = $stmt->execute();
+		}
 		// Verifica se a consulta aconteceu
 		if ( $check_exec ) {
-			
-			// Retorna a consulta
-			return $query;
-			
+			/*Retorna objeto com o conteúdo da consulta */
+			return $stmt;
+				
 		} else {
 		 
 			// Configura o erro
@@ -145,7 +70,7 @@ class DataBase
 	 * @param array ... Ilimitado número de arrays com chaves e valores
 	 * @return object|bool Retorna a consulta ou falso
 	 */
-	public function insert( $table ) {
+	public function insert($table, $data ) {
 		// Configura o array de colunas
 		$cols = array();
 		
@@ -156,24 +81,24 @@ class DataBase
 		$values = array();
 		
 		// O $j will assegura que colunas serão configuradas apenas uma vez
-		$j = 1;
+		$j = 0;
 		
 		// Obtém os argumentos enviados
-		$data = func_get_args();
+		//$data = func_get_args();
 		
 		// É preciso enviar pelo menos um array de chaves e valores
-		if ( ! isset( $data[1] ) || ! is_array( $data[1] ) ) {
+		if ( !isset( $data[0] ) || !is_array($data[0] ) ) {
+			//conteúdo inválido
 			return;
 		}
 		
 		// Faz um laço nos argumentos
-		for ( $i = 1; $i < count( $data ); $i++ ) {
-		
+		for ( $i=0; $i < count($data); $i++ ) {
 			// Obtém as chaves como colunas e valores como valores
-			foreach ( $data[$i] as $col => $val ) {
-			
+			foreach ($data[$i] as $col=>$val) {
+				
 				// A primeira volta do laço configura as colunas
-				if ( $i === 1 ) {
+				if ( $i === 0 ) {
 					$cols[] = "`$col`";
 				}
 				
@@ -337,16 +262,44 @@ class DataBase
 	 * @since 0.1
 	 * @access protected
 	 * @param string $table Nome da tabela
-	 * @param string $where Condição da consulta
+	 * @param array $cols lista de colunas
+	 * @param array $where lista de chaves e valor para definir as condições da consulta
 	 * @return Array Retorna a lista de registros
 	 */
-	public function select($table,$where=null){
-		$sql="SELECT * FROM ".$table;
-		if($where)
-			$sql=$sql." ".$where;
-		$return=$this->query($sql);
-		return $return->fetchAll(PDO::FETCH_ASSOC);
+	public function select($table,$cols=null, $where=null){
+		if($cols){
+			$sql="SELECT ";
+			foreach($cols as $col){
+				$sql.=$col."," ;
+			}
+			//Remove aultima virgula
+			$sql=substr($sql,0,-1);
+			$sql.=" FROM ".$table;
+		}else{
+			$sql="SELECT * FROM ".$table;
+		}
 		
+		if($where){
+			$sql.=" where ";
+			$num_cols=1;
+			foreach($where as $col=>$val){
+				if($num_cols>1){
+					$sql.=" AND ";
+				}
+				$sql.=$col."=".$val;
+				$num_cols++;
+				
+			}
+			if($num_cols>2)
+				$sql=rtrim($sql,'AND');
+		}
+		$return=$this->query($sql, null);
+		$result=null;
+		// Retorna a consulta
+		While($item=$return->fetch(PDO::FETCH_ASSOC)){
+			$result[]=$item;
+		}
+		return $result;
 		
 	}//select
 	

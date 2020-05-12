@@ -20,10 +20,16 @@ class MainController
 	public $title;
 
 	/**
+	 * $user
+	 * Usuario atual
+	 * @access public
+	 */
+	public $user = null;
+
+
+	/**
 	 * $login_required
-	 *
 	 * Se a página precisa de login
-	 *
 	 * @access public
 	 */
 	public $login_required = false;
@@ -64,7 +70,7 @@ class MainController
 		$this->parametros = $parametros;
 		
 		// Verifica o login
-		//$this->check_userlogin();
+		$this->check_userlogin();
 		
 	} // __construct
 	
@@ -116,8 +122,38 @@ class MainController
 			
 			return;
 			
-		} // load_model
+		} //if
 		
 	} // load_model
+
+
+	/**
+	 * get User
+	 * Carrega as informações do usuário logado
+	 * @since 0.1
+	 * @access public
+	 * @author Cândido Farias
+	 */
+	public function getUser(){
+		return $this->user;
+	}// getUser
+
+	/**
+	 * check user login
+	 * Verifica as permissões do usuário logado
+	 * @since 0.1
+	 * @access public
+	 * @author Cândido Farias
+	 */
+	public function check_userlogin(){
+		if(isset($_SESSION['user'])){
+			$this->user=$_SESSION['user'];
+			if(isset($_SESSION['user']['permission'])){
+				$this->permission_required=$_SESSION['user']['permission'];
+			}
+		}else{
+			$this->user=null;
+		}
+	}
 
 } // class MainController

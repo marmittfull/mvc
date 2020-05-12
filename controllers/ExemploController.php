@@ -32,4 +32,30 @@ class ExemploController extends MainController
 		require_once PATH . '/views/exemplo/exemplo.php';
 		require PATH . '/views/includes/footer.php';
 	}
+
+	
+	public function insert(){
+		$exemplo=$this->load_model("exemplo");
+		$result=$exemplo->insert();
+		
+	}
+
+	public function select(){
+		$exemplo=$this->load_model("exemplo");
+		$result=$exemplo->select();
+		print_r($result);
+	}
+
+	public function selecta(){
+		$exemplo=$this->load_model("exemplo");
+		$result=$exemplo->select2();
+		print_r($result);
+	}
+
+	public function selectb(){
+		$exemplo=$this->load_model("exemplo");
+		$result=$exemplo->select3();
+		print_r($result);
+	}
+
 }

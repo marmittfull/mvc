@@ -9,7 +9,6 @@
  */
 class MainModel
 {
-		
 	/**
 	 * $db
 	 *
@@ -34,7 +33,6 @@ class MainModel
 	
 	/**
 	 * Inverte datas 
-	 *
 	 * Obtém a data e inverte seu valor.
 	 * De: d-m-Y H:i:s para Y-m-d H:i:s ou vice-versa.
 	 *
