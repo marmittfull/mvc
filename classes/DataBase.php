@@ -3,7 +3,7 @@
 /**
  * DataBase- Classe para gerenciamento da base de dados
  *
- * @package mvc
+ * @package mvc.classes
  * @since 0.1
  */
 class DataBase
@@ -31,26 +31,38 @@ class DataBase
 	 *
 	 * @since 0.1
 	 * @access public
+	 * @param $sql String  Consulta a ser executada no banco de dados
+	 * @param $data_array Array  Lista de valores a serem vinculados a consulta.
 	 * @return object|bool Retorna a consulta ou falso
 	 */
 	public function query( $sql, $data_array = null ) {
-		// Prepara e executa
+		// Prepara para executar a query
+		/*
+		$stmt = $this->pdo->prepare("INSERT INTO contato (nome, email) VALUES (?, ?)");
+		Este método transforma uma declaração SQL na forma de um “objeto declaração” 
+		que pode ser manipulado por alguns métodos específicos.
+		Entre estes métodos, o bindParam() que vincula uma variável a um espaço demarcado na declaração.
+		Ex: $stmt->bindParam(1, $nome);
+			$stmt->bindParam(2, $email);
+			*/
 		$stmt      = $this->pdo->prepare($sql); 
-
+		/* Se Houver valores a serem vinculados */
 		if($data_array){
+			/**Executar a query com os valores viculados */
 			$check_exec = $stmt->execute($data_array);
 		}else{
+			/*Executa a query */
 			$check_exec = $stmt->execute();
 		}
 		// Verifica se a consulta aconteceu
 		if ( $check_exec ) {
 			/*Retorna objeto com o conteúdo da consulta */
 			return $stmt;
-				
 		} else {
 		 
 			// Configura o erro
 			$error       = $query->errorInfo();
+			/**Registra o erro */
 			$this->error = $error[2];
 			
 			// Retorna falso
@@ -80,14 +92,12 @@ class DataBase
 		// Configura o array de valores
 		$values = array();
 		
-		// O $j will assegura que colunas serão configuradas apenas uma vez
+		// O $j  assegura que colunas serão configuradas apenas uma vez
 		$j = 0;
 		
-		// Obtém os argumentos enviados
-		//$data = func_get_args();
 		
 		// É preciso enviar pelo menos um array de chaves e valores
-		if ( !isset( $data[0] ) || !is_array($data[0] ) ) {
+		if(!isset( $data[0] ) || !is_array($data[0]) ) {
 			//conteúdo inválido
 			return;
 		}
@@ -99,7 +109,7 @@ class DataBase
 				
 				// A primeira volta do laço configura as colunas
 				if ( $i === 0 ) {
-					$cols[] = "`$col`";
+					$cols[] = "$col";
 				}
 				
 				if ( $j <> $i ) {
@@ -110,7 +120,7 @@ class DataBase
 				// Configura os place holders do PDO
 				$place_holders .= '?, ';
 				
-				// Configura os valores que vamos enviar
+				// Configura os valores a serem enviados
 				$values[] = $val;
 				
 				$j = $i;
@@ -124,7 +134,8 @@ class DataBase
 		$cols = implode(', ', $cols);
 		
 		// Cria a declaração para enviar ao PDO
-		$stmt = "INSERT INTO `$table` ( $cols ) VALUES $place_holders) ";
+		$stmt = "INSERT INTO $table ( $cols ) VALUES $place_holders) ";
+		/**INSERT INTO usuario (nome,email,senha) VALUES (?,?,?) */
 		
 		// Insere os valores
 		$insert = $this->query( $stmt, $values );
@@ -168,22 +179,22 @@ class DataBase
 		}
 		
 		// Começa a declaração
-		$stmt = " UPDATE `$table` SET ";
+		$stmt = " UPDATE $table SET ";
 		
 		// Configura o array de valores
 		$set = array();
 		
 		// Configura a declaração do WHERE campo=valor
-		$where = " WHERE `$where_field` = ? ";
+		$where = " WHERE $where_field = ? ";
 		
 		// Você precisa enviar um array com valores
-		if ( ! is_array( $values ) ) {
+		if ( !is_array( $values ) ) {
 			return;
 		}
 		
 		// Configura as colunas a atualizar
 		foreach ( $values as $column => $value ) {
-			$set[] = " `$column` = ?";
+			$set[] = " $column = ?";
 		}
 		
 		// Separa as colunas por vírgula
@@ -224,16 +235,16 @@ class DataBase
 	 * @return object|bool Retorna a consulta ou falso
 	 */
 	public function delete( $table, $where_field, $where_field_value ) {
-		// Você precisa enviar todos os parâmetros
+		// É necessário enviar todos os parâmetros
 		if ( empty($table) || empty($where_field) || empty($where_field_value)  ) {
 			return;
 		}
 		
 		// Inicia a declaração
-		$stmt = " DELETE FROM `$table` ";
+		$stmt = " DELETE FROM $table ";
 
 		// Configura a declaração WHERE campo=valor
-		$where = " WHERE `$where_field` = ? ";
+		$where = " WHERE $where_field = ? ";
 		
 		// Concatena tudo
 		$stmt .= $where;
@@ -294,13 +305,15 @@ class DataBase
 				$sql=rtrim($sql,'AND');
 		}
 		$return=$this->query($sql, null);
-		$result=null;
-		// Retorna a consulta
-		While($item=$return->fetch(PDO::FETCH_ASSOC)){
-			$result[]=$item;
+		if($return->rowCount() > 0){
+			$result=null;
+			// Retorna a consulta
+			While($item=$return->fetch(PDO::FETCH_ASSOC)){
+				$result[]=$item;
+			}
+			return $result;
 		}
-		return $result;
-		
+		return null;
 	}//select
 	
 } // Class DataBase

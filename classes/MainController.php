@@ -2,7 +2,7 @@
 /**
  * MainController - Todos os controllers deverão estender essa classe
  *
- * @package MVC
+ * @package mvc.classes
  * @since 0.1
  */
 class MainController
@@ -60,11 +60,7 @@ class MainController
 	 */
 	public function __construct ( $parametros = array() ) {
 	
-		// Instancia do DB
-		//$this->db = new DataBase();
 		
-		// Phpass
-		//$this->phpass = new PasswordHash(8, false);
 		
 		// Parâmetros
 		$this->parametros = $parametros;
@@ -93,7 +89,7 @@ class MainController
 		//Adiciona o sufixo 'Model'
 		$model_name.="Model";
 
-		
+		//transforma a primeira letra da string para maiúsculo
 		$model_name=ucfirst($model_name);
 
 
@@ -115,6 +111,7 @@ class MainController
 			// Remove caracteres inválidos do nome do arquivo
 			$model_name = preg_replace( '/[^a-zA-Z0-9]/is', '', $model_name );
 			
+			//Verifica a existência da classe definda para o model
 			if(class_exists($model_name)){
 				return new $model_name();
 			}

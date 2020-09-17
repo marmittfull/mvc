@@ -1,12 +1,12 @@
 <?php
 // Evita que usuários acesse este arquivo diretamente
-if ( ! defined('PATH')) exit;
+if (!defined('PATH')) exit;
  
 // Inicia a sessão
 session_start();
 
 // Verifica o modo para debugar
-if ( ! defined('DEBUG') || DEBUG === false ) {
+if (!defined('DEBUG') || DEBUG === false ) {
 
 	// Esconde todos os erros
 	error_reporting(0);
@@ -24,5 +24,5 @@ if ( ! defined('DEBUG') || DEBUG === false ) {
 require_once PATH . '/functions/globalFunctions.php';
 
 // Carrega a aplicação
-$main = new Main();
+new Main();
 

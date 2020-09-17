@@ -9,6 +9,6 @@
 		<li><a href="<?php echo HOME_URI;?>/contato/">Contato</a></li>
 		<li><a href="<?php echo HOME_URI;?>/usuario/">Usuário</a></li>
 		<li><a href="<?php echo HOME_URI;?>/noticias/">Notícias</a></li>
-		<li><a href="<?php echo HOME_URI;?>/exemplo/">Exemplo básico</a></li>
+		<li><a href="<?php echo HOME_URI;?>/aluno/">Alunos</a></li>
 	</ul>
 </nav>

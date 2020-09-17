@@ -11,7 +11,7 @@
  */
 function chk_array ( $array, $key ) {
 	// Verifica se a chave existe no array
-	if ( isset( $array[ $key ] ) && ! empty( $array[ $key ] ) ) {
+	if ( isset( $array[ $key ] ) && !empty( $array[ $key ] ) ) {
 		// Retorna o valor da chave
 		return $array[ $key ];
 	}
@@ -20,18 +20,19 @@ function chk_array ( $array, $key ) {
 	return null;
 } // chk_array
 
+
 /**
  * Função para carregar automaticamente todas as classes padrão
- * Ver: http://php.net/manual/pt_BR/function.autoload.php.
- * Nossas classes estão na pasta classes/.
+ * @see: http://php.net/manual/pt_BR/function.autoload.php.
+ * As classes estão na pasta classes/.
  * O nome do arquivo deverá ser NomeDaClasse.php.
- * Por exemplo: para a classe Main, o arquivo vai chamar Main.php
+ * Exemplo: para a classe Main, o arquivo vai chamar Main.php
  */
 function __autoload($class_name) {
 	$file = PATH . '/classes/' . $class_name . '.php';
 	
-	if ( ! file_exists( $file ) ) {
-		require_once PATH . '/includes/404.php';
+	if (!file_exists( $file ) ) {
+		require_once PATH . '/views/includes/404.php';
 		return;
 	}
 	

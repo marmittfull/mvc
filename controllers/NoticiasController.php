@@ -2,7 +2,7 @@
 /**
  * NoticiasController - Controller de exemplo
  *
- * @package mvc
+ * @package mvc.controller
  * @since 0.1
  */
 class NoticiasController extends MainController
@@ -26,6 +26,7 @@ class NoticiasController extends MainController
 	 */
 	public $permission_required;
 
+
 	/**
 	 * Carrega a página "/views/noticias/index.php"
 	 */
@@ -39,16 +40,16 @@ class NoticiasController extends MainController
 		/** Carrega os arquivos do view **/
 		
 		// /views/_includes/header.php
-        require ABSPATH . '/views/_includes/header.php';
+        require PATH . '/views/includes/header.php';
 		
 		// /views/_includes/menu.php
-        require ABSPATH . '/views/_includes/menu.php';
+        require PATH . '/views/includes/menu.php';
 		
 		// /views/noticias/index.php
-        require ABSPATH . '/views/noticias/noticias-view.php';
+        require PATH . '/views/noticias/noticias-view.php';
 		
 		// /views/_includes/footer.php
-        require ABSPATH . '/views/_includes/footer.php';
+        require PATH . '/views/includes/footer.php';
 		
     } // index
 	
@@ -89,16 +90,16 @@ class NoticiasController extends MainController
 		
 		/** Carrega os arquivos do view **/
 		
-		// /views/_includes/header.php
-        require ABSPATH . '/views/_includes/header.php';
 		
-		// /views/_includes/menu.php
+        require PATH . '/views/_includes/header.php';
+		
+		
         require ABSPATH . '/views/_includes/menu.php';
 		
-		// /views/noticias/index.php
+		
         require ABSPATH . '/views/noticias/noticias-adm-view.php';
 		
-		// /views/_includes/footer.php
+		
         require ABSPATH . '/views/_includes/footer.php';
 		
     } // adm

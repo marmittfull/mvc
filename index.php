@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Este arquivo não faz nada, apenas inclui os arquivos necessários
  */

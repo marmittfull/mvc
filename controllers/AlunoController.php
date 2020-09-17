@@ -1,43 +1,47 @@
 <?php
-/**
- * home - Controller Aluno
- * @author Cândido Farias
- * @package mvc
- * @since 0.1
- */
-class AlunoController extends MainController
-{
-	// URL: dominio.com/exemplo/
-	public function index() {
-		$dadosExemplo="Exemplo";
-		/** Carrega os arquivos do view **/
+
+class AlunoController extends MainController{
+
+    public function index(){
+        /**Criar objeto do modelo */
+        $modelo=$this->load_model("aluno");
+        $alunos=$modelo->select();
+        /** Carrega os arquivos do view **/
 		require PATH . '/views/includes/header.php';
        			
         require PATH . '/views/includes/menu.php';
 		
-		require PATH . '/views/aluno/index.php';
+	    require PATH . '/views/aluno/index.php';
 		
 		require PATH . '/views/includes/footer.php';
-	}
-	
-	
+    }
 
-	public function listar(){
-		$alunoModel=$this->load_model("aluno");
-		$result=$alunoModel->select();
+    public function add(){
+        /** Carrega os arquivos do view **/
+		require PATH . '/views/includes/header.php';
+       			
+        require PATH . '/views/includes/menu.php';
 		
-	}
+	    require PATH . '/views/aluno/form_aluno.php';
+		
+		require PATH . '/views/includes/footer.php';
+    }
 
-	public function selecta(){
-		$exemplo=$this->load_model("exemplo");
-		$result=$exemplo->select2();
-		print_r($result);
-	}
+    public function salvar(){
+        if(isset($_POST['aluno']['enviar'])){
+            unset($_POST['aluno']['enviar']);
+            /**Criar objeto do modelo */
+            $modelo=$this->load_model("aluno");
+        
+            $array_aluno[]=$_POST['aluno'];
+            if($alunos=$modelo->insert($array_aluno)){
+                /**Mensagem de sucesso */
+            }else{
+                /**Mensagem de erro */
+            }
+        }
 
-	public function selectb(){
-		$exemplo=$this->load_model("exemplo");
-		$result=$exemplo->select3();
-		print_r($result);
-	}
+        //header("location:".HOME_URI."aluno/");
+    }
 
 }

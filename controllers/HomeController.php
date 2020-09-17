@@ -15,9 +15,6 @@ class HomeController extends MainController
 		// Título da página
 		$this->title = 'Home';
 		
-		// Parametros da função
-		$parametros = ( func_num_args() >= 1 ) ? func_get_arg(0) : array();
-	
 		// Essa página não precisa de modelo (model)
 		
 		/** Carrega os arquivos do view **/

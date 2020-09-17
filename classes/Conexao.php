@@ -1,5 +1,12 @@
 <?php
+/**
+ * Conexão - Classe Conexão
+ * @author Cândido Farias
+ * @package mvc.classes
+ * @since 0.1
+ */
 class Conexao {
+    
     public static $instance;
     
 

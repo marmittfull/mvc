@@ -1,16 +1,6 @@
 <?php if ( ! defined('PATH')) exit; ?>
 <div class="wrap">
-	<style>
-		.wrap p{
-			margin-top:10px;
-			font-size:18px;
-		}
-
-		li{
-			font-size:18px;
-			margin-left:30px;
-		}
-	</style>
+	
 	<h1 class="entry-title">URL amigável</h1>
 
 	<img src="https://www.seomaster.com.br/wp-content/uploads/2018/11/21_p.jpg" />

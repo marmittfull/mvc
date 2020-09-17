@@ -4,7 +4,7 @@
  *
  * 
  *
- * @package mvc
+ * @package mvc.classes
  * @since 0.1
  */
 class MainModel
