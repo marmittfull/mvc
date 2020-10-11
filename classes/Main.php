@@ -93,7 +93,7 @@ class Main
 		// Remove caracteres inválidos do nome do controlador para gerar o nome
 		// da classe. Se o arquivo chamar "news-controller.php", a classe deverá
 		// se chamar NewsController.
-		$this->controlador = preg_replace( '/[^a-zA-Z]/i', '', $this->controlador );
+		//$this->controlador = preg_replace( '/[^a-zA-Z]/i', '', $this->controlador );
 		
 		// Inclui o arquivo do controlador
 		require_once PATH . '/controllers/' . $this->controlador . '.php';
@@ -111,9 +111,9 @@ class Main
 		
 		// Cria o objeto da classe do controlador e envia os parâmentros
 		$this->controlador = new $this->controlador( $this->parametros );
-		
+							
 		// Remove caracteres inválidos do nome da ação (método)
-		$this->acao = preg_replace( '/[^a-zA-Z]/i', '', $this->acao );
+		//$this->acao = preg_replace( '/[^a-zA-Z]/i', '', $this->acao );
 		
 		// Se o método indicado existir, executa o método e envia os parâmetros
 		if ( method_exists( $this->controlador, $this->acao ) ) {
@@ -176,7 +176,7 @@ class Main
 			// Configura o controlador
 			//Extraio primeiro valor do array para atribuir ao controller
 			$this->controlador  = chk_array( $path, 0 );
-			
+			//exemplo
 			//Acrecenta sufixo 'Controller' para formar o nome da classe
 			$this->controlador .= 'Controller';
 			/* Controller -> exemploController  */

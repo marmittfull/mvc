@@ -316,4 +316,25 @@ class DataBase
 		return null;
 	}//select
 	
+	/**
+	 * Retorna o número de resultados de determinada query uma vez que executada.
+	 * @author Tiago Marmitt
+	 * @access public
+	 */
+	public function numeroResultados()
+  {
+    return $this->stmt->rowCount();
+  }
+
+	/**
+	 * Retorna o último id de determinada tabela referente a realizada 
+	 * query uma vez que executada. 
+	 * 
+	 * @author Tiago Marmitt
+	 * @access public
+	 */
+  public function ultimoId()
+  {
+    return $this->connection->lastInsertId();
+  }
 } // Class DataBase

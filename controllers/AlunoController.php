@@ -1,47 +1,44 @@
 <?php
-
 class AlunoController extends MainController{
 
     public function index(){
-        /**Criar objeto do modelo */
-        $modelo=$this->load_model("aluno");
-        $alunos=$modelo->select();
-        /** Carrega os arquivos do view **/
-		require PATH . '/views/includes/header.php';
-       			
-        require PATH . '/views/includes/menu.php';
-		
-	    require PATH . '/views/aluno/index.php';
-		
-		require PATH . '/views/includes/footer.php';
+        include PATH."/views/includes/header.php";
+        include PATH."/views/includes/menu.php";
+        /*Carrega model do aluno */
+        $model=$this->load_model("aluno");
+        $alunos=$model->select();
+        
+        include PATH."/views/alunos/index.php";
+  
+
+        include PATH."/views/includes/footer.php";
     }
 
     public function add(){
-        /** Carrega os arquivos do view **/
-		require PATH . '/views/includes/header.php';
-       			
-        require PATH . '/views/includes/menu.php';
-		
-	    require PATH . '/views/aluno/form_aluno.php';
-		
-		require PATH . '/views/includes/footer.php';
+
+        include PATH."/views/includes/header.php";
+        include PATH."/views/includes/menu.php";
+        include PATH."/views/alunos/form_aluno.php";
+        include PATH."/views/includes/footer.php";
     }
 
-    public function salvar(){
+    public function save(){
         if(isset($_POST['aluno']['enviar'])){
+            $model=$this->load_model("aluno");
             unset($_POST['aluno']['enviar']);
-            /**Criar objeto do modelo */
-            $modelo=$this->load_model("aluno");
-        
-            $array_aluno[]=$_POST['aluno'];
-            if($alunos=$modelo->insert($array_aluno)){
-                /**Mensagem de sucesso */
-            }else{
+            if($model->insert($_POST['aluno'])){
+               
                 /**Mensagem de erro */
+                $msg['msg']="Registro salvo com sucesso!";
+                $msg['class']="success";
+            }else{
+               
+                /**Mensagem de erro */
+                $msg['msg']="Falha ao realizar o registro!";
+                $msg['class']="danger";
             }
+            $_SESSION['msg'][]=$msg;
         }
-
-        //header("location:".HOME_URI."aluno/");
+        header("location:".HOME_URI."/aluno");
     }
-
 }

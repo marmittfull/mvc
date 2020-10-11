@@ -5,7 +5,7 @@ class ExemploModel extends MainModel
 
 	public function teste(){
 		$sql="SELECT * FROM usuario";
-
+		
 		$retorno=$this->db->query($sql, null);
 		While($item=$retorno->fetch(PDO::FETCH_ASSOC)){
 			$resultado[]=$item;
