@@ -5,6 +5,10 @@ class Sessao
    * Função para mostrar mensagens na tela do usuário.
    * @author Tiago Marmitt
    * @access public
+   * 
+   * Uso: Sessao::mensagem('usuario', 'erro ao cadastrar usuario', 'alert alert-danger')
+   * ou ainda:
+   * Sessao::mensagem('usuario); <- caso a mensagem já esteja cadastrada.
    */
   public static function mensagem($nome, $texto = null, $classe = null)
   {

@@ -5,6 +5,8 @@ class ValidaForm{
    * @author Tiago Marmitt
    * @access public
    * @return boolean
+   * 
+   * Uso: ValidaForm::validarNome('exemplo exemplo')
    */
   public static function validarNome($nome)
   {
@@ -17,6 +19,8 @@ class ValidaForm{
    * @author Tiago Marmitt
    * @access public
    * @return boolean
+   * 
+   * Uso: ValidaForm::validarEmail('exemplo@ex.ex')
    */
   public static function validarEmail($email)
   {

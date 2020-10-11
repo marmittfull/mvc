@@ -159,8 +159,11 @@ class MainController
 	 * Função para carregar a view desejada.
 	 * @access public
 	 * @author Tiago Marmitt
+	 * 
+	 * Uso: $this->load_view(alunoController/index); ou ainda passando um array com dados. 
+	 * $this->load_view(alunoController/index, $dados)
 	 */
-	public function load_view($view)
+	public function load_view($view, $dados=[])
 	{
 		if (file_exists(HOME_URI . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $view . '.php')) :
 			require_once HOME_URI . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $view . '.php';
