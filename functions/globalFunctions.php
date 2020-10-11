@@ -28,14 +28,37 @@ function chk_array ( $array, $key ) {
  * O nome do arquivo deverá ser NomeDaClasse.php.
  * Exemplo: para a classe Main, o arquivo vai chamar Main.php
  */
-function __autoload($class_name) {
-	$file = PATH . '/classes/' . $class_name . '.php';
+// function __autoload($class_name) {
+// 	$file = PATH . '/classes/' . $class_name . '.php';
 	
-	if (!file_exists( $file ) ) {
-		require_once PATH . '/views/includes/404.php';
-		return;
-	}
+// 	if (!file_exists( $file ) ) {
+// 		require_once PATH . '/views/includes/404.php';
+// 		return;
+// 	}
 	
-	// Inclui o arquivo da classe
-    require_once $file;
-} // __autoload
+// 	// Inclui o arquivo da classe
+//     require_once $file;
+// } // __autoload
+
+
+/**
+ * Função para carregar automaticamente todas as classes requisitadas.
+ * @author Tiago Marmitt
+ * 
+ * Motivo substituição: função __autoload não deve ser mais utilizada, a partir da nova versão
+ * do php é recomendada a função spl_autoload_register.
+ */
+spl_autoload_register(function ($classe) {
+  $diretorios =
+    [
+      'classes',
+      'helpers'
+    ];
+
+  foreach ($diretorios as $diretorio) {
+    $arquivo = PATH . DIRECTORY_SEPARATOR . $diretorio . DIRECTORY_SEPARATOR . $classe . '.php';
+    if (file_exists($arquivo)) :
+      require_once $arquivo;
+    endif;
+  }
+});
