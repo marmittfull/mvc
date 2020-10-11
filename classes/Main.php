@@ -125,9 +125,7 @@ class Main
 			else if(count($this->parametros)==2)
 			    $this->controlador->{$this->acao}($this->parametros[0],$this->parametros[1], $this->parametros[2] );
 			else if(count($this->parametros)==3)
-			    $this->controlador->{$this->acao}($this->parametros[0],$this->parametros[1], $this->parametros[2]);
-			    
-					
+			    $this->controlador->{$this->acao}($this->parametros[0],$this->parametros[1], $this->parametros[2]);	
 			// FIM :)
 			return;
 		} // method_exists
@@ -198,5 +196,4 @@ class Main
 		}
 	
 	} // get_url_data
-	
 }

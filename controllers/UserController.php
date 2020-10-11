@@ -27,7 +27,7 @@ class UserController extends MainController
 		// Título da página
 		$this->title = 'Login';
 		/** Carrega os arquivos do view **/
-		require PATH . '/views/user/login.php';
+		$this->load_view('user/login');
 	} // login
 
 

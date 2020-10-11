@@ -15,14 +15,8 @@ class ExemploController extends MainController
 	public function index() {
 		$this->title="Exemplo";
 		$tituloPagina="Exemplo";
-		/** Carrega os arquivos do view **/
-		require PATH . '/views/includes/header.php';
-       			
-        require PATH . '/views/includes/menu.php';
-		
+    $this->load_view('includes/menu');
 		//require PATH . '/views/exemplo/index.php';
-		
-		require PATH . '/views/includes/footer.php';
 	}
 	
 	/**
@@ -35,11 +29,8 @@ class ExemploController extends MainController
 		
 		$dadosExemplo=$model->teste();
 		/** Carrega os arquivos do view **/
-		require PATH . '/views/includes/header.php';
-       			
-        require PATH . '/views/includes/menu.php';
-		require_once PATH . '/views/exemplo/index.php';
-		require PATH . '/views/includes/footer.php';
+    $this->load_view('includes/menu');
+		$this->load_view('exemplo/index');
 	}
 	
 
@@ -48,27 +39,19 @@ class ExemploController extends MainController
 		
 		$dadosExemplo=$model->select($id);
 		/** Carrega os arquivos do view **/
-		require PATH . '/views/includes/header.php';
-       			
-        require PATH . '/views/includes/menu.php';
-		require_once PATH . '/views/exemplo/index.php';
-		require PATH . '/views/includes/footer.php';
-	
+    $this->load_view('includes/menu');
+		$this->load_view('exemplo/index');
 	}
 	
 	public function insert(){
-		require PATH . '/views/includes/header.php';
-       			
-        require PATH . '/views/includes/menu.php';
-		
+	
+    $this->load_view('includes/menu');
 		$exemplo=$this->load_model("exemplo");
 		if($result=$exemplo->insert()){
-			echo "Registro Realizado!";
+			Sessao::mensagem('exemplo', 'Registro realizado!', 'alert alert-success');
 		}else{
-			echo "Falha ao realizar o registro";
+			Sessao::mensagem('exemplo', 'Falha ao realizar registro!', 'alert alert-danger');
 		}
-
-		require PATH . '/views/includes/footer.php';
 	}
 
 	

@@ -165,8 +165,8 @@ class MainController
 	 */
 	public function load_view($view, $dados=[])
 	{
-		if (file_exists(HOME_URI . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $view . '.php')) :
-			require_once HOME_URI . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $view . '.php';
+		if (file_exists(PATH . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $view . '.php')) :
+			require_once PATH . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . $view . '.php';
 		else :
 			die('Página inexistente!');
 		endif;

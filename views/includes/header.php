@@ -1,23 +1,3 @@
-<?php if ( ! defined('PATH')) exit; ?>
-
-<!DOCTYPE html>
-
-<html lang="pt-BR">
-
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width">
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script src="<?php echo HOME_URI;?>/views/js/script.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
-	<script src='https://kit.fontawesome.com/a076d05399.js'></script>
-	<link rel="stylesheet" href="<?php echo HOME_URI;?>/views/css/style.css">
-
-
-	<title><?php echo $this->title; ?></title>
-</head>
-<body>
 	<header>
 		<div id="h-logo"><img src="<?php echo HOME_URI ?>/views/images/logo.png" style="height:75px"/></div>
 		<div id='h-center'></div>

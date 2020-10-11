@@ -1,44 +1,34 @@
 <?php
-class AlunoController extends MainController{
+class AlunoController extends MainController
+{
 
-    public function index(){
-        include PATH."/views/includes/header.php";
-        include PATH."/views/includes/menu.php";
+    public function index()
+    {
+        $this->load_view('includes/menu');
         /*Carrega model do aluno */
-        $model=$this->load_model("aluno");
-        $alunos=$model->select();
-        
-        include PATH."/views/alunos/index.php";
-  
-
-        include PATH."/views/includes/footer.php";
+        $model = $this->load_model("aluno");
+        $alunos = $model->select();
+        $this->load_view('alunos/index');
     }
 
-    public function add(){
+    public function add()
+    {
 
-        include PATH."/views/includes/header.php";
-        include PATH."/views/includes/menu.php";
-        include PATH."/views/alunos/form_aluno.php";
-        include PATH."/views/includes/footer.php";
+        $this->load_view('includes/menu');
+        $this->load_view('alunos/form_aluno');
     }
 
-    public function save(){
-        if(isset($_POST['aluno']['enviar'])){
-            $model=$this->load_model("aluno");
+    public function save()
+    {
+        if (isset($_POST['aluno']['enviar'])) {
+            $model = $this->load_model("aluno");
             unset($_POST['aluno']['enviar']);
-            if($model->insert($_POST['aluno'])){
-               
-                /**Mensagem de erro */
-                $msg['msg']="Registro salvo com sucesso!";
-                $msg['class']="success";
-            }else{
-               
-                /**Mensagem de erro */
-                $msg['msg']="Falha ao realizar o registro!";
-                $msg['class']="danger";
+            if ($model->insert($_POST['aluno'])) {
+                Sessao::mensagem('msg', 'Registro salvo com sucesso!', 'alert alert-success');
+            } else {
+                Sessao::mensagem('msg', 'Falha ao realizar registro!', 'alert alert-danger');
             }
-            $_SESSION['msg'][]=$msg;
         }
-        header("location:".HOME_URI."/aluno");
+        Url::redirecionar('aluno');
     }
 }

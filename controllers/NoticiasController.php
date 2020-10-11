@@ -39,17 +39,8 @@ class NoticiasController extends MainController
 				
 		/** Carrega os arquivos do view **/
 		
-		// /views/_includes/header.php
-        require PATH . '/views/includes/header.php';
-		
-		// /views/_includes/menu.php
-        require PATH . '/views/includes/menu.php';
-		
-		// /views/noticias/index.php
-        require PATH . '/views/noticias/noticias-view.php';
-		
-		// /views/_includes/footer.php
-        require PATH . '/views/includes/footer.php';
+        $this->load_view('includes/menu');
+				$this->load_view('noticias/noticias-view');
 		
     } // index
 	
@@ -66,9 +57,6 @@ class NoticiasController extends MainController
 		
 			// Se não; garante o logout
 			$this->logout();
-			
-			// Redireciona para a página de login
-			$this->goto_login();
 			
 			// Garante que o script não vai passar daqui
 			return;
@@ -89,19 +77,18 @@ class NoticiasController extends MainController
         $modelo = $this->load_model('noticias/noticias-adm-model');
 		
 		/** Carrega os arquivos do view **/
-		
-		
-        require PATH . '/views/_includes/header.php';
-		
-		
-        require ABSPATH . '/views/_includes/menu.php';
-		
-		
-        require ABSPATH . '/views/noticias/noticias-adm-view.php';
-		
-		
-        require ABSPATH . '/views/_includes/footer.php';
-		
+			$this->load_view('includes/menu');
+			$this->load_view('noticias/noticias-adm-view');
     } // adm
 	
+		/**
+		 * Função para deslogar o usuário e direcioná-lo para a tela de login
+		 */
+		public function logout()
+		{
+			unset($_SESSION);
+			session_destroy();
+			Url::redirecionar('user/login');
+		}
+
 } // class NoticiasController

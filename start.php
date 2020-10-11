@@ -2,9 +2,6 @@
 // Evita que usuários acesse este arquivo diretamente
 if (!defined('PATH')) exit;
  
-// Inicia a sessão
-session_start();
-
 // Verifica o modo para debugar
 if (!defined('DEBUG') || DEBUG === false ) {
 
@@ -19,10 +16,4 @@ if (!defined('DEBUG') || DEBUG === false ) {
 	ini_set("display_errors", 1); 
 	
 }
-
-// Funções globais
-require_once PATH . '/functions/globalFunctions.php';
-
-// Carrega a aplicação
-new Main();
 

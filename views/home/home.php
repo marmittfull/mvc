@@ -2,7 +2,7 @@
 
 
 <div class="wrap">
-	<h1>Padão MVC</h1>
+	<h1>Padrão MVC</h1>
 	<p>	Se você está visualizando esta página, seu sistema PHP com padrão MVC está funcionando.</p>
 	<p>MVC é nada mais que um padrão de arquitetura de software, separando a estrutura a aplicação de acordo com a finalidade. A interação do usuário(view), a manipulação dos dados(model) e o controle(controller).</p>
 

@@ -18,13 +18,11 @@ class HomeController extends MainController
 		// Essa página não precisa de modelo (model)
 		
 		/** Carrega os arquivos do view **/
-		require PATH . '/views/includes/header.php';
+
        			
-        require PATH . '/views/includes/menu.php';
+    $this->load_view('includes/menu');
+		$this->load_view('home/home');
 		
-		require PATH . '/views/home/home.php';
-		
-		require PATH . '/views/includes/footer.php';
 		
     } // index
 	
